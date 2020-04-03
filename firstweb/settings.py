@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 import os
 import dj_database_url
+#import warnings
+#warnings.filterwarnings("ignore", message="No directory at", module="whitenoise.base" )
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -28,7 +30,8 @@ SECRET_KEY = 'u!nvtec-ash99#3cy(fuog-9w5r4rch98&3(j)iyx1225-+%@v'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['*', 'samaweb-new.herokuapp.com']
+ALLOWED_HOSTS = ['*']
+                 #'samaweb-new.herokuapp.com']
 
 # Application definition
 
@@ -127,10 +130,17 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR,'static')
+STATIC_ROOT = 'staticfiles'
+#os.path.join(BASE_DIR,'staticfiles')
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR,'project_name/static')
+        os.path.join(BASE_DIR,'static'),
 ]
 
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 MEDIA_URL = '/media/'
+
+#if not os.path.isdir(STATIC_ROOT):
+ #   os.makedirs(STATIC_ROOT, mode=0o755)
+
+# Honor the 'X-Forwarded-Proto' header for request.is_secure().
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
