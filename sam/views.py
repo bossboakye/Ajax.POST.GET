@@ -4,13 +4,16 @@ from django.core import serializers
 from .forms import ClientForm
 from .models import Client
 
-
 # Create your views here.
 
 def indexView(request):
     form = ClientForm()
     clients = Client.objects.all()
     return render(request, "index.html", {"form": form, "clients": clients})
+
+#def table(request):
+#    table = Client.objects.all()
+#    return render(request, 'tables.html', {"table": table})
 
 
 def postClient(request):
@@ -47,3 +50,4 @@ def checkContact(request):
             return JsonResponse({"valid": True}, status=200)
 
     return JsonResponse({}, status=400)
+

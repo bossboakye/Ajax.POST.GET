@@ -10,5 +10,6 @@ class Client(models.Model):
     contact = models.CharField(max_length=12, default=233, unique=True)
     email = models.EmailField(max_length=100)
 
+
     def __str__(self):
         return self.owner_ID
